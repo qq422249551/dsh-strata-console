@@ -1,0 +1,33 @@
+{
+  "name": "dsh-strata-console",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Run and supervise the local Strata model server from DeepSeek Harness: start/stop buttons in the composer and on the plugin page, plus the strata_* tools for the model.",
+  "type": "module",
+  "main": "lib/host.js",
+  "exports": {
+    ".": "./lib/host.js",
+    "./client": "./lib/client.js",
+    "./supervisor": "./lib/process/supervisor.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "scripts",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    },
+    "manifestVersion": 1
+  },
+  "license": "MIT"
+}

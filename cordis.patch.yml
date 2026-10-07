@@ -1,0 +1,17 @@
+# dsh-strata-console bundle patch — the one row that mounts this package.
+#
+# A bundle declares rows; the profile's own cordis.patch.yml tunes them by id
+# (`- id: strata` + `config`), because profile patches apply after every bundle
+# layer. Keeping the launch knobs out of here is what makes this package
+# portable: nothing below is machine-specific.
+#
+# `./lib/host.js` is patch-relative, so the loader anchors it beside this file
+# and turns it into a file URL. That keeps the row working from any checkout
+# location, without depending on package-name resolution at load time.
+#
+# The row name also keys the browser half: DSH resolves the nearest package.json
+# above this module to find the package's `dsh.client` declaration and serve
+# `lib/client.js`. Changing this file name therefore remounts the client half too.
+- insert:
+    - id: strata-server
+      name: ./lib/host.js
